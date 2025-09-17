@@ -11,7 +11,8 @@ public class AuthController {
 
     // Endpoint para generar un token de prueba
     @PostMapping("/login")
-    public Map<String, String> login(@RequestParam String username) {
+    public Map<String, String> login(@RequestBody Map<String, String> body) {
+        String username = body.get("username");
         String token = JwtUtil.generateToken(username);
         return Map.of("token", token);
     }
